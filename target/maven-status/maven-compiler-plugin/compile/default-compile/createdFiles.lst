@@ -1,0 +1,9 @@
+com\microproductos\maestro\exception\ResourceNotFoundException.class
+com\microproductos\maestro\security\CustomAuthenticationEntryPoint.class
+com\microproductos\maestro\repository\ProductoRepository.class
+com\microproductos\maestro\controller\ProductoController.class
+com\microproductos\maestro\exception\GlobalExceptionHandler.class
+com\microproductos\maestro\MaestroApplication.class
+com\microproductos\maestro\service\ProductoService.class
+com\microproductos\maestro\model\Producto.class
+com\microproductos\maestro\security\SecurityConfig.class
