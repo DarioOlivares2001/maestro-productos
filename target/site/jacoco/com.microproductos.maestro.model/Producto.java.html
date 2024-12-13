@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Producto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maestro</a> &gt; <a href="index.source.html" class="el_package">com.microproductos.maestro.model</a> &gt; <span class="el_source">Producto.java</span></div><h1>Producto.java</h1><pre class="source lang-java linenums">package com.microproductos.maestro.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Min;
+
+
+@Entity
+@Table(name = &quot;producto&quot;)
+<span class="fc" id="L16">public class Producto {</span>
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;id&quot;)
+    private Long id;
+
+    @NotNull(message = &quot;El nombre no puede ser nulo&quot;)
+    @Size(min = 1, max = 100, message = &quot;El nombre debe tener entre 1 y 100 caracteres&quot;)
+    @Column(name = &quot;nombre&quot;)
+    private String nombre;
+
+    @Min(value = 0, message = &quot;El precio no puede ser negativo&quot;)
+    @Column(name = &quot;precio&quot;)
+    private double precio;
+
+    @NotNull(message = &quot;La imagen no puede ser nula&quot;)
+    @Size(min = 1, message = &quot;La imagen debe ser un path válido&quot;)
+    @Column(name = &quot;image&quot;)
+    private String image;
+
+    // Getters y Setters
+<span class="fc" id="L38">    public Long getId() { return id; }</span>
+<span class="fc" id="L39">    public void setId(Long id) { this.id = id; }</span>
+
+<span class="fc" id="L41">    public String getNombre() { return nombre; }</span>
+<span class="fc" id="L42">    public void setNombre(String nombre) { this.nombre = nombre; }</span>
+
+<span class="fc" id="L44">    public double getPrecio() { return precio; }</span>
+<span class="fc" id="L45">    public void setPrecio(double precio) { this.precio = precio; }</span>
+
+<span class="fc" id="L47">    public String getImage() { return image; }</span>
+<span class="fc" id="L48">    public void setImage(String image) { this.image = image; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

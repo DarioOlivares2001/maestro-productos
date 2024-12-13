@@ -1,1 +1,7 @@
-C:\Springboot2\FS3\Semana5\entrega\maestro\src\test\java\com\microproductos\maestro\MaestroApplicationTests.java
+C:\sonar\maestro\src\test\java\com\microproductos\maestro\controller\ProductoControllerTest.java
+C:\sonar\maestro\src\test\java\com\microproductos\maestro\exception\GlobalExceptionHandlerTest.java
+C:\sonar\maestro\src\test\java\com\microproductos\maestro\exception\ResourceNotFoundExceptionTest.java
+C:\sonar\maestro\src\test\java\com\microproductos\maestro\MaestroApplicationTests.java
+C:\sonar\maestro\src\test\java\com\microproductos\maestro\model\ProductoTest.java
+C:\sonar\maestro\src\test\java\com\microproductos\maestro\repository\ProductoRepositoryTest.java
+C:\sonar\maestro\src\test\java\com\microproductos\maestro\service\ProductoServiceTest.java

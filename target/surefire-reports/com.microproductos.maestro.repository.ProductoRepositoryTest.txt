@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.microproductos.maestro.repository.ProductoRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.051 s -- in com.microproductos.maestro.repository.ProductoRepositoryTest

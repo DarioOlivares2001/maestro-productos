@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SecurityConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maestro</a> &gt; <a href="index.source.html" class="el_package">com.microproductos.maestro.security</a> &gt; <span class="el_source">SecurityConfig.java</span></div><h1>SecurityConfig.java</h1><pre class="source lang-java linenums">package com.microproductos.maestro.security;
+
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import static org.springframework.security.config.Customizer.withDefaults;
+
+@Configuration
+<span class="fc" id="L18">public class SecurityConfig {</span>
+
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+<span class="fc" id="L26">        return http</span>
+<span class="fc" id="L27">                .csrf(csrf -&gt; csrf.disable())</span>
+<span class="fc" id="L28">                .authorizeHttpRequests(auth -&gt; auth</span>
+<span class="fc" id="L29">                        .requestMatchers(HttpMethod.GET, &quot;/api/productos/**&quot;).permitAll()</span>
+<span class="fc" id="L30">                        .requestMatchers(HttpMethod.POST, &quot;/api/productos/**&quot;).permitAll()</span>
+<span class="fc" id="L31">                        .requestMatchers(HttpMethod.PUT, &quot;/api/productos/**&quot;).permitAll()</span>
+<span class="fc" id="L32">                        .requestMatchers(HttpMethod.DELETE, &quot;/api/productos/**&quot;).permitAll()</span>
+<span class="fc" id="L33">                        .anyRequest().authenticated()</span>
+                )
+<span class="fc" id="L35">                .exceptionHandling(ex -&gt; ex</span>
+<span class="fc" id="L36">                        .authenticationEntryPoint(customAuthenticationEntryPoint)</span>
+<span class="fc" id="L37">                        .accessDeniedHandler(accessDeniedHandler())</span>
+                )
+<span class="fc" id="L39">                .httpBasic(withDefaults())</span>
+<span class="fc" id="L40">                .build();</span>
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+<span class="fc" id="L45">        return (request, response, accessDeniedException) -&gt; {</span>
+<span class="nc" id="L46">            response.setStatus(HttpServletResponse.SC_FORBIDDEN);</span>
+<span class="nc" id="L47">            response.getWriter().write(&quot;Acceso denegado: No tienes permisos para realizar esta operación.&quot;);</span>
+<span class="nc" id="L48">        };</span>
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+<span class="fc" id="L53">        UserDetails user = User.builder()</span>
+<span class="fc" id="L54">                .username(&quot;user&quot;)</span>
+<span class="fc" id="L55">                .password(&quot;{noop}123&quot;)  // La anotación {noop} indica que la contraseña no está cifrada.</span>
+<span class="fc" id="L56">                .roles(&quot;USER&quot;)</span>
+<span class="fc" id="L57">                .build();</span>
+    
+<span class="fc" id="L59">        UserDetails admin = User.builder()</span>
+<span class="fc" id="L60">                .username(&quot;admin&quot;)</span>
+<span class="fc" id="L61">                .password(&quot;{noop}123&quot;)</span>
+<span class="fc" id="L62">                .roles(&quot;ADMIN&quot;)</span>
+<span class="fc" id="L63">                .build();</span>
+    
+<span class="fc" id="L65">        return new InMemoryUserDetailsManager(user, admin);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

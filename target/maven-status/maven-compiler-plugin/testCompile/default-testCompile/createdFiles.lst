@@ -1,1 +1,7 @@
+com\microproductos\maestro\exception\GlobalExceptionHandlerTest.class
+com\microproductos\maestro\exception\ResourceNotFoundExceptionTest.class
+com\microproductos\maestro\repository\ProductoRepositoryTest.class
+com\microproductos\maestro\service\ProductoServiceTest.class
+com\microproductos\maestro\model\ProductoTest.class
+com\microproductos\maestro\controller\ProductoControllerTest.class
 com\microproductos\maestro\MaestroApplicationTests.class
